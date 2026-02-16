@@ -42,7 +42,7 @@ Multi-Threading:
 2. No Isolations & Memory Protection. 
 3. Threads Scheduling.
 4. No of CPU >=1.
-5. concept od more thant 1 thread , threads are context switched.
+5. concept of more then 1 thread , threads are context switched.
 
 
 ### Threads Scheduling :-  
