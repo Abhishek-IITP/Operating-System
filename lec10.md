@@ -1,146 +1,32 @@
-# Process States in Operating System
+# What are different Process States in Operating System ?
 
-## What is a Process State?
+##What is Process state : - 
+ -> Life cycle
+ -> Generation to Termination.
+ 1. New State - 
+- Program -> process , being done
 
-A **process state** represents the current stage of a process in its life cycle, from creation to termination.
+2. Ready -
+- Process is in memory 
+- in ready queue
 
-A process moves through different states depending on CPU availability and resource requirements.
+3. Running State - 
+- P1 process -> cpu allocate
 
----
+4. Waiting State -
+- waiting I/O completion.
 
-# Five Main Process States
+5. Termination State - 
+- Process is finished.
 
-## 1. New State
-- Program is being converted into a process.
-- OS creates the Process Control Block (PCB).
-- Memory and resources are allocated.
-- Process is not yet ready to execute.
-
-## 2. Ready State
-- Process is loaded into main memory.
-- Waiting in the **ready queue**.
-- Waiting for CPU allocation.
-
-## 3. Running State
-- CPU is allocated to the process.
-- Instructions are being executed.
-- Only one process per CPU can be in this state at a time.
-
-## 4. Waiting (Blocked) State
-- Process is waiting for some event.
-- Mostly waiting for I/O completion.
-- Example: disk read, keyboard input, network response.
-
-## 5. Terminated State
-- Process finishes execution.
-- OS releases memory and other resources.
-- Process life cycle ends.
-
----
-
-# Process State Transition Diagram
-```
-            +------+
-            | New  |
-            +------+
-                |
-                |  (Admitted by Long Term Scheduler)
-                v
-            +--------+
-            | Ready  |<-----------------------------+
-            +--------+                              |
-                |                                    |
-                |  (Selected by Short Term Scheduler)|
-                v                                    |
-            +----------+                             |   
-            | Running  |                             |
-            +----------+                             |
-             |        |                              |
- (I/O Request)|        | (Process Completes)         |
-             v        v                              |
-       +----------+  +------------+                  |
-       | Waiting  |  | Terminated |                  |
-       +----------+  +------------+                  |
-             |                                         
-             | (I/O Completed)                        
-             +-----------------------------------------+
-                               |
-                               v
-                            +--------+
-                            | Ready  |
-                            +--------+
-```
+create a diagram to make all the above things clear
 
 
----
+Job schedular :- ek pool se bohut sare jobs ko pick krta h aur ready state pe bhejta h.
+- also known as long term schedular(LTS).
+CPU schedular :- ready state se Termination state pe bhejne ka kaam cpu schedular ka hota h.
+also known as short term schedular(STS). explain why is is short term schedular and same for long term schedular too.
 
-# Job Scheduler (Long Term Scheduler - LTS)
+degree of multi-Programming :- ek baari me kitne sare process ready queue me rah skte h. and this was managed by LTS .
 
-## Definition
-The Job Scheduler selects processes from the job pool (secondary storage) and moves them into the ready queue.
-
-## Why is it called Long Term Scheduler?
-
-- It runs less frequently.
-- It controls how many processes enter memory.
-- It manages the **degree of multiprogramming**.
-- It makes long-term decisions about system load.
-
----
-
-# CPU Scheduler (Short Term Scheduler - STS)
-
-## Definition
-The CPU Scheduler selects one process from the ready queue and allocates the CPU to it.
-
-## Why is it called Short Term Scheduler?
-
-- It runs very frequently.
-- It makes decisions in milliseconds.
-- It selects the next process whenever the CPU becomes free.
-- It handles quick switching decisions.
-
----
-
-# Degree of Multiprogramming
-
-## Definition
-The number of processes present in memory (ready queue) at a time.
-
-Example:  
-If 5 processes are in memory ready to execute,  
-Degree of multiprogramming = 5
-
-## Managed By
-Long Term Scheduler (LTS)
-
-Reason:  
-Because LTS controls how many processes are admitted into memory.
-
----
-
-# Dispatcher
-
-## Definition
-The Dispatcher is the OS module that:
-
-- Gives control of CPU to the process selected by Short Term Scheduler.
-- Performs context switching.
-- Switches from kernel mode to user mode.
-- Starts execution of the selected process.
-
-### Flow
-
-Short Term Scheduler → Selects process  
-Dispatcher → Gives CPU control  
-
----
-
-# Complete Process Flow
-
-1. Program created → New  
-2. LTS admits → Ready  
-3. STS selects → Running  
-4. Needs I/O → Waiting  
-5. I/O complete → Ready  
-6. Execution finished → Terminated  
+dispatcher :-  The module of os that gives control  of CPU to a process selected by STS.
